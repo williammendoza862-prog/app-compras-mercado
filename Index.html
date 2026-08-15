@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis Compras</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f7f9;
+      color: #222;
+    }
+
+    header {
+      background: #1769aa;
+      color: white;
+      padding: 22px 18px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    header p {
+      margin: 8px 0 0;
+      font-size: 15px;
+    }
+
+    .contenedor {
+      max-width: 700px;
+      margin: auto;
+      padding: 18px;
+    }
+
+    .botones {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      border: none;
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .principal {
+      background: #1769aa;
+      color: white;
+    }
+
+    .secundario {
+      background: white;
+      color: #1769aa;
+      border: 2px solid #1769aa;
+    }
+
+    .tarjeta {
+      background: white;
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 16px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .tarjeta h2 {
+      margin-top: 0;
+      color: #1769aa;
+    }
+
+    .categoria {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 18px;
+      color: #333;
+    }
+
+    .producto {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .producto input {
+      width: 20px;
+      height: 20px;
+      margin-right: 12px;
+    }
+
+    .presupuesto {
+      font-size: 20px;
+      font-weight: bold;
+      color: #16833b;
+    }
+
+    @media (max-width: 500px) {
+      .botones {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🛒 Mis Compras</h1>
+  <p>Planifica tus compras según tus platos</p>
+</header>
+
+<div class="contenedor">
+
+  <div class="botones">
+    <button class="principal" onclick="nuevaCompra()">
+      ➕ Nueva compra
+    </button>
+
+    <button class="secundario" onclick="mostrarLista()">
+      📋 Lista de compras
+    </button>
+  </div>
+
+  <div class="tarjeta">
+    <h2>🍽️ Platos de la semana</h2>
+
+    <div class="producto">
+      <input type="checkbox" id="plato1">
+      <label for="plato1">🍗 Pollo con arroz</label>
+    </div>
+
+    <div class="producto">
+      <input type="checkbox" id="plato2">
+      <label for="plato2">🍝 Tallarines</label>
+    </div>
+
+    <div class="producto">
+      <input type="checkbox" id="plato3">
+      <label for="plato3">🥣 Lentejas</label>
+    </div>
+
+    <div class="producto">
+      <input type="checkbox" id="plato4">
+      <label for="plato4">🍳 Arroz con huevo</label>
+    </div>
+  </div>
+
+  <div class="tarjeta">
+    <h2>🛒 Lista de compras</h2>
+
+    <div class="categoria">🥩 Carnes y proteínas</div>
+
+    <div class="producto">
+      <input type="checkbox">
+      <span>Pollo</span>
+    </div>
+
+    <div class="producto">
+      <input type="checkbox">
+      <span>Huevos</span>
+    </div>
+
+    <div class="categoria">🥦 Verduras</div>
+
+    <div class="producto">
+      <input type="checkbox">
+      <span>Papa</span>
+    </div>
+
+    <div class="producto">
+      <input type="checkbox">
+      <span>Cebolla</span>
+    </div>
+
+    <div class="producto">
+      <input type="checkbox">
+      <span>Zanahoria</span>
+    </div>
+
+    <div class="categoria">🍚 Abarrotes</div>
+
+    <div class="producto">
+      <input type="checkbox">
+      <span>Arroz</span>
+    </div>
+
+    <div class="producto">
+      <input type="checkbox">
+      <span>Lentejas</span>
+    </div>
+
+    <div class="producto">
+      <input type="checkbox">
+      <span>Fideos</span>
+    </div>
+  </div>
+
+  <div class="tarjeta">
+    <h2>💰 Presupuesto</h2>
+    <p>Presupuesto estimado:</p>
+    <div class="presupuesto">S/ 150.00</div>
+  </div>
+
+</div>
+
+<script>
+  function nuevaCompra() {
+    alert("Aquí podremos crear una nueva compra.");
+  }
+
+  function mostrarLista() {
+    alert("Aquí veremos la lista completa de compras.");
+  }
+</script>
+
+</body>
+</html>
