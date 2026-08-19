@@ -241,34 +241,99 @@ huevo:{
 
 function generarLista(){
 
-const seleccionados=
-document.querySelectorAll(
-'input[type="checkbox"]:checked'
-);
+const seleccionados =
+document.querySelectorAll('input[type="checkbox"]:checked');
 
-const lista={};
+const lista = {};
 
-seleccionados.forEach(check=>{
+seleccionados.forEach(check => {
 
-const receta=recetas[check.value];
+const receta = recetas[check.value];
 
 for(const categoria in receta){
 
 if(!lista[categoria]){
-lista[categoria]={};
+lista[categoria] = {};
 }
 
 for(const producto in receta[categoria]){
 
+const texto = receta[categoria][producto];
+
+const match = texto.match(
+/([\d.,]+)\s*(kg|g|l|ml|unidades?|paquetes?|botellas?)/i
+);
+
+if(!match){
+continue;
+}
+
+let cantidad = parseFloat(
+match[1].replace(",", ".")
+);
+
+let unidad = match[2].toLowerCase();
+
+if(unidad === "unidad"){
+unidad = "unidades";
+}
+
+if(unidad === "paquete"){
+unidad = "paquetes";
+}
+
+if(unidad === "botella"){
+unidad = "botellas";
+}
+
 if(!lista[categoria][producto]){
 
-lista[categoria][producto]=
-receta[categoria][producto];
+lista[categoria][producto] = {
+cantidad: cantidad,
+unidad: unidad
+};
 
 }else{
 
-lista[categoria][producto]+=" + "+
-receta[categoria][producto];
+const existente = lista[categoria][producto];
+
+if(existente.unidad === unidad){
+
+existente.cantidad += cantidad;
+
+}else{
+
+let nuevaCantidad = existente.cantidad;
+let nuevaUnidad = existente.unidad;
+
+if(existente.unidad === "kg" && unidad === "g"){
+nuevaCantidad += cantidad / 1000;
+}
+
+else if(existente.unidad === "g" && unidad === "kg"){
+nuevaCantidad = existente.cantidad / 1000 + cantidad;
+nuevaUnidad = "kg";
+}
+
+else if(existente.unidad === "l" && unidad === "ml"){
+nuevaCantidad += cantidad / 1000;
+}
+
+else if(existente.unidad === "ml" && unidad === "l"){
+nuevaCantidad = existente.cantidad / 1000 + cantidad;
+nuevaUnidad = "l";
+}
+
+else{
+nuevaCantidad += cantidad;
+}
+
+lista[categoria][producto] = {
+cantidad: nuevaCantidad,
+unidad: nuevaUnidad
+};
+
+}
 
 }
 
@@ -278,31 +343,41 @@ receta[categoria][producto];
 
 });
 
-const contenedor=document.getElementById("lista");
+const contenedor = document.getElementById("lista");
 
-if(Object.keys(lista).length===0){
+if(Object.keys(lista).length === 0){
 
-contenedor.innerHTML=
+contenedor.innerHTML =
 '<div class="vacio">Selecciona uno o más platos para generar tu lista.</div>';
 
 return;
 
 }
 
-let html="";
+let html = "";
 
 for(const categoria in lista){
 
-html+=`<div class="categoria">${categoria}</div>`;
+html += `<div class="categoria">${categoria}</div>`;
 
 for(const producto in lista[categoria]){
 
-html+=`
+const item = lista[categoria][producto];
+
+let cantidad = item.cantidad;
+
+if(Number.isInteger(cantidad)){
+cantidad = cantidad.toString();
+}else{
+cantidad = cantidad.toFixed(2).replace(/\.?0+$/,"");
+}
+
+html += `
 <div class="producto">
 <input type="checkbox">
 <span>${producto}</span>
 <span class="cantidad">
-${lista[categoria][producto]}
+${cantidad} ${item.unidad}
 </span>
 </div>
 `;
@@ -311,7 +386,7 @@ ${lista[categoria][producto]}
 
 }
 
-contenedor.innerHTML=html;
+contenedor.innerHTML = html;
 
 }
 
