@@ -1,229 +1,283 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mis Compras</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mis Compras</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<style>
+*{box-sizing:border-box;font-family:Arial,sans-serif}
 
-    body {
-      margin: 0;
-      background: #f4f7f9;
-      color: #222;
-    }
+body{
+margin:0;
+background:#f3f6f8;
+color:#222;
+}
 
-    header {
-      background: #1769aa;
-      color: white;
-      padding: 22px 18px;
-      text-align: center;
-    }
+header{
+background:#1769aa;
+color:white;
+padding:22px 16px;
+text-align:center;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
+header h1{
+margin:0;
+font-size:30px;
+}
 
-    header p {
-      margin: 8px 0 0;
-      font-size: 15px;
-    }
+header p{
+margin:8px 0 0;
+font-size:16px;
+}
 
-    .contenedor {
-      max-width: 700px;
-      margin: auto;
-      padding: 18px;
-    }
+.contenedor{
+max-width:700px;
+margin:auto;
+padding:16px;
+}
 
-    .botones {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
+.tarjeta{
+background:white;
+border-radius:18px;
+padding:18px;
+margin-bottom:16px;
+box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
 
-    button {
-      border: none;
-      border-radius: 14px;
-      padding: 16px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+h2{
+margin-top:0;
+color:#1769aa;
+}
 
-    .principal {
-      background: #1769aa;
-      color: white;
-    }
+.plato{
+display:flex;
+align-items:center;
+padding:14px 4px;
+border-bottom:1px solid #eee;
+font-size:18px;
+}
 
-    .secundario {
-      background: white;
-      color: #1769aa;
-      border: 2px solid #1769aa;
-    }
+.plato input{
+width:24px;
+height:24px;
+margin-right:14px;
+}
 
-    .tarjeta {
-      background: white;
-      border-radius: 18px;
-      padding: 18px;
-      margin-bottom: 16px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-    }
+.boton{
+width:100%;
+padding:16px;
+border:0;
+border-radius:14px;
+font-size:18px;
+font-weight:bold;
+background:#1769aa;
+color:white;
+margin-top:10px;
+}
 
-    .tarjeta h2 {
-      margin-top: 0;
-      color: #1769aa;
-    }
+.categoria{
+font-size:19px;
+font-weight:bold;
+margin-top:18px;
+color:#1769aa;
+}
 
-    .categoria {
-      font-size: 18px;
-      font-weight: bold;
-      margin-top: 18px;
-      color: #333;
-    }
+.producto{
+display:flex;
+align-items:center;
+padding:11px 4px;
+border-bottom:1px solid #eee;
+font-size:17px;
+}
 
-    .producto {
-      display: flex;
-      align-items: center;
-      padding: 10px 0;
-      border-bottom: 1px solid #eee;
-    }
+.producto input{
+width:21px;
+height:21px;
+margin-right:12px;
+}
 
-    .producto input {
-      width: 20px;
-      height: 20px;
-      margin-right: 12px;
-    }
+.cantidad{
+margin-left:auto;
+font-weight:bold;
+color:#16833b;
+}
 
-    .presupuesto {
-      font-size: 20px;
-      font-weight: bold;
-      color: #16833b;
-    }
+.vacio{
+text-align:center;
+color:#777;
+padding:15px;
+}
 
-    @media (max-width: 500px) {
-      .botones {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+@media(max-width:500px){
+header h1{font-size:27px}
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>🛒 Mis Compras</h1>
-  <p>Planifica tus compras según tus platos</p>
+<h1>🛒 Mis Compras</h1>
+<p>Planifica tus compras según tus platos</p>
 </header>
 
 <div class="contenedor">
 
-  <div class="botones">
-    <button class="principal" onclick="nuevaCompra()">
-      ➕ Nueva compra
-    </button>
+<div class="tarjeta">
+<h2>🍽️ Selecciona tus platos</h2>
 
-    <button class="secundario" onclick="mostrarLista()">
-      📋 Lista de compras
-    </button>
-  </div>
+<label class="plato">
+<input type="checkbox" value="pollo" onchange="generarLista()">
+🍗 Pollo con arroz
+</label>
 
-  <div class="tarjeta">
-    <h2>🍽️ Platos de la semana</h2>
+<label class="plato">
+<input type="checkbox" value="tallarines" onchange="generarLista()">
+🍝 Tallarines
+</label>
 
-    <div class="producto">
-      <input type="checkbox" id="plato1">
-      <label for="plato1">🍗 Pollo con arroz</label>
-    </div>
+<label class="plato">
+<input type="checkbox" value="lentejas" onchange="generarLista()">
+🥣 Lentejas
+</label>
 
-    <div class="producto">
-      <input type="checkbox" id="plato2">
-      <label for="plato2">🍝 Tallarines</label>
-    </div>
+<label class="plato">
+<input type="checkbox" value="huevo" onchange="generarLista()">
+🍳 Arroz con huevo
+</label>
 
-    <div class="producto">
-      <input type="checkbox" id="plato3">
-      <label for="plato3">🥣 Lentejas</label>
-    </div>
+</div>
 
-    <div class="producto">
-      <input type="checkbox" id="plato4">
-      <label for="plato4">🍳 Arroz con huevo</label>
-    </div>
-  </div>
+<div class="tarjeta">
+<h2>🛒 Lista de compras</h2>
 
-  <div class="tarjeta">
-    <h2>🛒 Lista de compras</h2>
+<div id="lista">
+<div class="vacio">
+Selecciona uno o más platos para generar tu lista.
+</div>
+</div>
 
-    <div class="categoria">🥩 Carnes y proteínas</div>
+</div>
 
-    <div class="producto">
-      <input type="checkbox">
-      <span>Pollo</span>
-    </div>
-
-    <div class="producto">
-      <input type="checkbox">
-      <span>Huevos</span>
-    </div>
-
-    <div class="categoria">🥦 Verduras</div>
-
-    <div class="producto">
-      <input type="checkbox">
-      <span>Papa</span>
-    </div>
-
-    <div class="producto">
-      <input type="checkbox">
-      <span>Cebolla</span>
-    </div>
-
-    <div class="producto">
-      <input type="checkbox">
-      <span>Zanahoria</span>
-    </div>
-
-    <div class="categoria">🍚 Abarrotes</div>
-
-    <div class="producto">
-      <input type="checkbox">
-      <span>Arroz</span>
-    </div>
-
-    <div class="producto">
-      <input type="checkbox">
-      <span>Lentejas</span>
-    </div>
-
-    <div class="producto">
-      <input type="checkbox">
-      <span>Fideos</span>
-    </div>
-  </div>
-
-  <div class="tarjeta">
-    <h2>💰 Presupuesto</h2>
-    <p>Presupuesto estimado:</p>
-    <div class="presupuesto">S/ 150.00</div>
-  </div>
+<button class="boton" onclick="limpiar()">
+🗑️ Limpiar selección
+</button>
 
 </div>
 
 <script>
-  function nuevaCompra() {
-    alert("Aquí podremos crear una nueva compra.");
-  }
 
-  function mostrarLista() {
-    alert("Aquí veremos la lista completa de compras.");
-  }
-</script>
+const recetas={
 
-</body>
-</html>
+pollo:{
+"🥩 Carnes y proteínas":{
+"Pollo":"1 kg"
+},
+"🍚 Abarrotes":{
+"Arroz":"1 kg"
+},
+"🥦 Verduras":{
+"Cebolla":"2 unidades",
+"Papa":"1 kg"
+},
+"🧂 Condimentos":{
+"Sal":"1 paquete",
+"Aceite":"1 botella"
+}
+},
+
+tallarines:{
+"🥩 Carnes y proteínas":{
+"Carne molida":"500 g"
+},
+"🍚 Abarrotes":{
+"Fideos":"500 g"
+},
+"🥦 Verduras":{
+"Tomate":"4 unidades",
+"Cebolla":"1 unidad"
+},
+"🧂 Condimentos":{
+"Aceite":"1 botella"
+}
+},
+
+lentejas:{
+"🍚 Abarrotes":{
+"Lentejas":"500 g",
+"Arroz":"1 kg"
+},
+"🥦 Verduras":{
+"Cebolla":"2 unidades",
+"Tomate":"2 unidades"
+},
+"🥩 Carnes y proteínas":{
+"Chorizo":"300 g"
+},
+"🧂 Condimentos":{
+"Sal":"1 paquete",
+"Aceite":"1 botella"
+}
+},
+
+huevo:{
+"🍳 Carnes y proteínas":{
+"Huevos":"12 unidades"
+},
+"🍚 Abarrotes":{
+"Arroz":"1 kg"
+},
+"🥦 Verduras":{
+"Plátano":"6 unidades"
+},
+"🧂 Condimentos":{
+"Aceite":"1 botella",
+"Sal":"1 paquete"
+}
+}
+
+};
+
+function generarLista(){
+
+const seleccionados=
+document.querySelectorAll(
+'input[type="checkbox"]:checked'
+);
+
+const lista={};
+
+seleccionados.forEach(check=>{
+
+const receta=recetas[check.value];
+
+for(const categoria in receta){
+
+if(!lista[categoria]){
+lista[categoria]={};
+}
+
+for(const producto in receta[categoria]){
+
+if(!lista[categoria][producto]){
+
+lista[categoria][producto]=
+receta[categoria][producto];
+
+}else{
+
+lista[categoria][producto]+=" + "+
+receta[categoria][producto];
+
+}
+
+}
+
+}
+
+});
+
+const contenedor=document.getElementById("lista");
+
+if(Object.keys(lista).
