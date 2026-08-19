@@ -280,4 +280,52 @@ receta[categoria][producto];
 
 const contenedor=document.getElementById("lista");
 
-if(Object.keys(lista).
+if(Object.keys(lista).length===0){
+
+contenedor.innerHTML=
+'<div class="vacio">Selecciona uno o más platos para generar tu lista.</div>';
+
+return;
+
+}
+
+let html="";
+
+for(const categoria in lista){
+
+html+=`<div class="categoria">${categoria}</div>`;
+
+for(const producto in lista[categoria]){
+
+html+=`
+<div class="producto">
+<input type="checkbox">
+<span>${producto}</span>
+<span class="cantidad">
+${lista[categoria][producto]}
+</span>
+</div>
+`;
+
+}
+
+}
+
+contenedor.innerHTML=html;
+
+}
+
+function limpiar(){
+
+document
+.querySelectorAll('input[type="checkbox"]')
+.forEach(c=>c.checked=false);
+
+generarLista();
+
+}
+
+</script>
+
+</body>
+</html>
