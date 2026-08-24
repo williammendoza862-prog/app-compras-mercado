@@ -387,10 +387,37 @@ ${cantidad} ${item.unidad}
 }
 
 contenedor.innerHTML = html;
+restaurarEstado();
+}
+function guardarEstado(){
+    const estado = {};
 
+    document.querySelectorAll('input[type="checkbox"][data-producto]').forEach(check => {
+        estado[check.dataset.producto] = check.checked;
+    });
+
+    localStorage.setItem('misComprasEstado', JSON.stringify(estado));
 }
 
+function restaurarEstado(){
+    const guardado = localStorage.getItem('misComprasEstado');
+
+    if(!guardado) return;
+
+    const estado = JSON.parse(guardado);
+
+    document.querySelectorAll('input[type="checkbox"][data-producto]').forEach(check => {
+        check.checked = estado[check.dataset.producto] === true;
+    });
+}
+
+document.addEventListener('change', function(e){
+    if(e.target.matches('input[type="checkbox"][data-producto]')){
+        guardarEstado();
+    }
+});
 function limpiar(){
+
 
 document
 .querySelectorAll('input[type="checkbox"]')
