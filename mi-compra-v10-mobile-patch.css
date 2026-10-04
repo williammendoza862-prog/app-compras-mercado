@@ -1,0 +1,93 @@
+/* MI-COMPRA — V10 OPTIMIZACIÓN MÓVIL / PLANIFICACIÓN SEMANAL
+   Aplicar al final de index.html, antes de </style> o dentro de un bloque <style>.
+*/
+.week-exec{
+  border-radius:18px;
+  padding:12px!important;
+}
+.week-hero{
+  padding:12px!important;
+  margin-bottom:10px!important;
+}
+.week-hero h2{
+  font-size:20px!important;
+  line-height:1.15!important;
+  margin:0 0 4px!important;
+}
+.week-hero p{
+  font-size:12px!important;
+  margin:0!important;
+}
+.week-days{
+  display:flex!important;
+  gap:6px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  padding:4px 2px 8px!important;
+  scroll-snap-type:x proximity;
+  -webkit-overflow-scrolling:touch;
+}
+.week-days::-webkit-scrollbar{height:0}
+.week-day{
+  flex:0 0 62px!important;
+  min-width:62px!important;
+  padding:8px 5px!important;
+  border-radius:12px!important;
+  scroll-snap-align:start;
+}
+.week-day .day-name{
+  font-size:10px!important;
+}
+.week-day .day-number{
+  font-size:17px!important;
+}
+.week-day-title{
+  font-size:15px!important;
+  margin:8px 0!important;
+}
+.week-meal-card{
+  border-radius:14px!important;
+  padding:11px!important;
+}
+.week-meal-card h3{
+  font-size:17px!important;
+  line-height:1.2!important;
+}
+.week-controls{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:7px!important;
+}
+.week-controls button,
+.week-controls select,
+.week-controls input{
+  min-width:0!important;
+  width:100%!important;
+}
+.week-ingredients{
+  gap:5px!important;
+}
+.week-ingredients .tag{
+  font-size:11px!important;
+  padding:5px 7px!important;
+}
+.week-stats{
+  display:grid!important;
+  grid-template-columns:repeat(2,1fr)!important;
+  gap:7px!important;
+}
+.week-stats>div{
+  padding:9px!important;
+  border-radius:12px!important;
+}
+.week-quote{
+  font-size:11px!important;
+  padding:9px!important;
+}
+@media(max-width:390px){
+  main{padding:8px!important}
+  .week-exec{padding:9px!important}
+  .week-day{flex-basis:58px!important;min-width:58px!important}
+  .week-controls{grid-template-columns:1fr!important}
+  .week-meal-card{padding:9px!important}
+}
